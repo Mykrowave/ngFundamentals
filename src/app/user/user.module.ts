@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     UserRoutingModule,
     FormsModule
+  ],
+  providers: [
   ]
 })
 export class UserModule { }
