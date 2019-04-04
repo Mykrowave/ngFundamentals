@@ -9,7 +9,7 @@ export class EventsListComponent implements OnInit {
 
   event = {
     id: 1,
-    name: 'Conference 101',
+    name: 'Angular Connect',
     date: '1/20/2030',
     time: '9:30 am',
     price: 599.99,
