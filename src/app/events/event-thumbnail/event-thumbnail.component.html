@@ -3,8 +3,5 @@
     <div>Date: {{event.date}}</div>
     <div>Time: {{event.time}}</div>
     <div>Price: ${{event.price}}</div>
-    <div>
-      <span>Location: {{event.location.address}}&nbsp;</span>
-      <span>{{event.location.city}}, {{event.location.country}}</span>
-    </div>
+    <app-event-address [location]="event.location"></app-event-address>
   </div>
