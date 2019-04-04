@@ -322,7 +322,7 @@ export class EventService {
 
   getEvents() {
     const subject = new Subject();
-    setTimeout(() => {subject.next(EVENTS); subject.complete(); }, 1000);
+    setTimeout(() => {subject.next(EVENTS); subject.complete(); }, 100);
     return subject;
   }
   getEvent(id: number) {
