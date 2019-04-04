@@ -13,6 +13,8 @@ import { ToastrService } from './common/toastr.service';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { RouterModule } from '@angular/router';
 import { EventCreateComponent } from './events/event-create/event-create.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { EventRouteActivatorService } from './events/event-detail/event-route-activator.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
     EventAddressComponent,
     NavBarComponent,
     EventDetailComponent,
-    EventCreateComponent
+    EventCreateComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
   ],
   providers: [
     EventService,
-    ToastrService
+    ToastrService,
+    EventRouteActivatorService
   ],
   bootstrap: [AppComponent]
 })
