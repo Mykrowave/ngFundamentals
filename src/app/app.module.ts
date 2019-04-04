@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { appRoutes } from './routes';
+
 
 import { AppComponent } from './app.component';
 import { EventsListComponent } from './events/events-list/events-list.component';
@@ -8,6 +10,13 @@ import { EventAddressComponent } from './events/event-thumbnail/event-address.co
 import { NavBarComponent } from './nav/nav-bar/nav-bar.component';
 import { EventService } from './events/shared/event.service';
 import { ToastrService } from './common/toastr.service';
+import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { RouterModule } from '@angular/router';
+import { EventCreateComponent } from './events/event-create/event-create.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { EventRouteActivatorService } from './events/event-detail/event-route-activator.service';
+import { EventListResolverService } from './events/events-list/event-list-resolver.service';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -15,15 +24,32 @@ import { ToastrService } from './common/toastr.service';
     EventsListComponent,
     EventThumbnailComponent,
     EventAddressComponent,
-    NavBarComponent
+    NavBarComponent,
+    EventDetailComponent,
+    EventCreateComponent,
+    NotFoundComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     EventService,
-    ToastrService
+    ToastrService,
+    EventRouteActivatorService,
+    {
+      provide: 'canDeactivateCreateEvent',
+      useValue: checkDirtyState
+    },
+    EventListResolverService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function checkDirtyState(component: EventCreateComponent) {
+  if (component.isDirty) {
+    return window.confirm('You havent saved your Event. Are you sure you wish to Cancel?');
+  }
+  return true;
+}
