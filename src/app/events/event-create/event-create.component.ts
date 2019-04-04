@@ -9,7 +9,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 })
 export class EventCreateComponent implements OnInit {
 
-  isDirty = true;
+  isDirty = false;
   constructor(private router: Router) { }
 
   ngOnInit() {
