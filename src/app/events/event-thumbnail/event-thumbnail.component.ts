@@ -9,15 +9,9 @@ import { EventEmitter } from '@angular/core';
 export class EventThumbnailComponent implements OnInit {
 
   @Input() event: any;
-  @Output() eventClick = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  HandleClick() {
-    // console.log('Button Click Handled!');
-    this.eventClick.emit(this.event.name);
   }
 }

@@ -25,9 +25,4 @@ export class EventsListComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  HandleClickEvent(data: any) {
-    console.log('You Clicked', data);
-  }
-
 }
