@@ -4,3 +4,9 @@
 .thumbnail{
   min-height: 210px;
 }
+.green{
+  color: #00ff00 !important;
+}
+.bold{
+  font-weight: 600;
+}
