@@ -16,6 +16,7 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { EventRouteActivatorService } from './events/event-detail/event-route-activator.service';
 import { EventListResolverService } from './events/events-list/event-list-resolver.service';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
