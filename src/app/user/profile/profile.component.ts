@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +9,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  profileForm: FormGroup;
+  firstName: FormControl;
+  lastName: FormControl;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z].*')]);
+    this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required]);
+
+    this.profileForm = new FormGroup({
+      firstName: this.firstName,
+      lastName: this.lastName
+    });
   }
+
+  cancel() {
+    this.router.navigate(['/events']);
+  }
+  saveProfile(formValues) {
+    if (this.profileForm.valid) {
+      this.authService.updateProfile(formValues.firstName, formValues.lastName);
+      this.router.navigate(['/events']);
+    }
+  }
+
+   // get firstNameControl() { return this.firstName; }
+   // get lastNameControl() { return this.lastName; }
+
+  validFirstName(): boolean {
+    return this.firstName.valid || this.firstName.untouched;
+  }
+  validLastName(): boolean {
+    return this.lastName.valid || this.lastName.untouched;
+  }
+
 
 }
