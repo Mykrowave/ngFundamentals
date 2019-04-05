@@ -319,6 +319,7 @@ const EVENTS: IEvent[] = [
 })
 export class EventService {
 
+
   constructor() { }
 
   getEvents(): Observable<IEvent[]> {
@@ -328,6 +329,12 @@ export class EventService {
   }
   getEvent(id: number): IEvent {
     return EVENTS.find(e => e.id === id);
+  }
+
+  saveEvent(event: IEvent): any {
+    event.id = 999;
+    event.sessions = [];
+    EVENTS.push(event);
   }
 }
 
