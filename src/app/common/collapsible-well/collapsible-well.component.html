@@ -1,0 +1,6 @@
+<div (click)="toggleVisbility()" class="well pointable">
+  <h4>
+    <ng-content select="[well-title]"></ng-content>
+  </h4>
+  <ng-content select=[well-body] *ngIf="contentVisible"></ng-content>
+</div>
