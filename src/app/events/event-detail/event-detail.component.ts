@@ -13,6 +13,7 @@ export class EventDetailComponent implements OnInit {
 
   addMode: boolean;
   event: IEvent;
+  filterBy = 'all';
   constructor(private eventService: EventService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {

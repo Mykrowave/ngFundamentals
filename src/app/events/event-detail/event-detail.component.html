@@ -27,7 +27,17 @@
     <a (click)="addSessionMode(true)">Add Session</a>
   </div>
 
-  <app-session-list [sessions]="event.sessions" *ngIf="!addMode"></app-session-list>
+  <div>
+      <button class="btn btn-default" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
+      <button class="btn btn-default" [class.active]="filterBy==='beginner'" (click)="filterBy='beginner'">Beginner</button>
+      <button class="btn btn-default" [class.active]="filterBy==='intermediate'" (click)="filterBy='intermediate'">Intermediate</button>
+      <button class="btn btn-default" [class.active]="filterBy==='advanced'" (click)="filterBy='advanced'">Advanced</button>
+  </div>
+  <app-session-list
+    [sessions]="event.sessions"
+    [filterBy]="filterBy"
+    *ngIf="!addMode">
+  </app-session-list>
   <app-session-create *ngIf="addMode"
     (cancelCreateSession)="addSessionMode(false)"
     (createNewSession)="createNewSession($event)">
