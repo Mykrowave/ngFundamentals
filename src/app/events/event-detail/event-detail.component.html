@@ -3,15 +3,15 @@
 
   <div class="row">
     <div class="col-md-11">
-      <h2>{{event?.name}} </h2>
+      <h2>{{event?.name | uppercase}} </h2>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <div><strong>Date:</strong> {{event?.date}}</div>
+      <div><strong>Date:</strong> {{event?.date | date:'shortDate'}}</div>
       <div><strong>Time:</strong> {{event?.time}}</div>
-      <div><strong>Price:</strong> ${{event?.price}}</div>
+      <div><strong>Price:</strong> {{event?.price | currency:'USD'}}</div>
     </div>
     <div class="col-md-6">
       <address>
@@ -27,7 +27,24 @@
     <a (click)="addSessionMode(true)">Add Session</a>
   </div>
 
-  <app-session-list [sessions]="event.sessions" *ngIf="!addMode"></app-session-list>
+  <div>
+      <h5>Filter By Level</h5>
+      <button class="btn btn-default" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
+      <button class="btn btn-default" [class.active]="filterBy==='beginner'" (click)="filterBy='beginner'">Beginner</button>
+      <button class="btn btn-default" [class.active]="filterBy==='intermediate'" (click)="filterBy='intermediate'">Intermediate</button>
+      <button class="btn btn-default" [class.active]="filterBy==='advanced'" (click)="filterBy='advanced'">Advanced</button>
+  </div>
+  <div>
+      <h5>Sort By</h5>
+      <button class="btn btn-default" [class.active]="sortBy==='name'" (click)="sortBy='name'">Name</button>
+      <button class="btn btn-default" [class.active]="sortBy==='voters'" (click)="sortBy='voters'">Voters</button>
+  </div>
+  <app-session-list
+    [sessions]="event.sessions"
+    [filterBy]="filterBy"
+    [sortBy]="sortBy"
+    *ngIf="!addMode">
+  </app-session-list>
   <app-session-create *ngIf="addMode"
     (cancelCreateSession)="addSessionMode(false)"
     (createNewSession)="createNewSession($event)">
