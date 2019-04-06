@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { IEvent } from './ievent';
+import { ISession } from './isession';
 
 const EVENTS: IEvent[] = [
   {
@@ -320,6 +321,7 @@ const EVENTS: IEvent[] = [
 export class EventService {
 
 
+
   constructor() { }
 
   getEvents(): Observable<IEvent[]> {
@@ -335,6 +337,11 @@ export class EventService {
     event.id = 999;
     event.sessions = [];
     EVENTS.push(event);
+  }
+
+  updateEvent(event: IEvent) {
+    const index = EVENTS.findIndex(ev => ev.id === event.id);
+    EVENTS[index] = event;
   }
 }
 
