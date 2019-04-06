@@ -28,14 +28,21 @@
   </div>
 
   <div>
+      <h5>Filter By Level</h5>
       <button class="btn btn-default" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
       <button class="btn btn-default" [class.active]="filterBy==='beginner'" (click)="filterBy='beginner'">Beginner</button>
       <button class="btn btn-default" [class.active]="filterBy==='intermediate'" (click)="filterBy='intermediate'">Intermediate</button>
       <button class="btn btn-default" [class.active]="filterBy==='advanced'" (click)="filterBy='advanced'">Advanced</button>
   </div>
+  <div>
+      <h5>Sort By</h5>
+      <button class="btn btn-default" [class.active]="sortBy==='name'" (click)="sortBy='name'">Name</button>
+      <button class="btn btn-default" [class.active]="sortBy==='voters'" (click)="sortBy='voters'">Voters</button>
+  </div>
   <app-session-list
     [sessions]="event.sessions"
     [filterBy]="filterBy"
+    [sortBy]="sortBy"
     *ngIf="!addMode">
   </app-session-list>
   <app-session-create *ngIf="addMode"
