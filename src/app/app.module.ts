@@ -1,15 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { appRoutes } from './routes';
-
-
 import { AppComponent } from './app.component';
 import { EventsListComponent } from './events/events-list/events-list.component';
 import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnail.component';
 import { EventAddressComponent } from './events/event-thumbnail/event-address.component';
 import { NavBarComponent } from './nav/nav-bar/nav-bar.component';
 import { EventService } from './events/shared/event.service';
-import { ToastrService } from './common/toastr.service';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { RouterModule } from '@angular/router';
 import { EventCreateComponent } from './events/event-create/event-create.component';
@@ -22,6 +19,10 @@ import { SessionCreateComponent } from './events/sessions/session-create/session
 import { SessionListComponent } from './events/sessions/session-list/session-list.component';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 import { SessionDurationPipe } from './events/shared/session-duration.pipe';
+import { TOASTR_TOKEN } from './common/toastr.service';
+
+const toastrStringKey = 'toastr';
+const toastr = window[toastrStringKey];
 
 @NgModule({
   declarations: [
@@ -42,11 +43,14 @@ import { SessionDurationPipe } from './events/shared/session-duration.pipe';
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     EventService,
-    ToastrService,
+    {
+      provide: TOASTR_TOKEN,
+      useValue: toastr
+    },
     EventRouteActivatorService,
     {
       provide: 'canDeactivateCreateEvent',
