@@ -17,7 +17,6 @@ export class EventsListComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.eventService.getEvents().subscribe(events => { this.events = events; });
     this.events = this.activatedRoute.snapshot.data.events;
   }
   ThumbnailClick(eventName: string) {
