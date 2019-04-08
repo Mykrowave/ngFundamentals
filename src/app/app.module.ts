@@ -23,7 +23,8 @@ import { TOASTR_TOKEN } from './common/toastr.service';
 import { JQUERY_TOKEN } from './common/jquery.service';
 import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
 import { ModalDirectiveDirective } from './common/modal-directive.directive';
-
+import { UpvoteComponent } from './events/sessions/upvote/upvote.component';
+import { SessionService } from './events/sessions/session.service';
 const toastrStringKey = 'toastr';
 const toastr = window[toastrStringKey];
 const jqueryStringKey = '$';
@@ -44,7 +45,8 @@ const jquery = window[jqueryStringKey];
     CollapsibleWellComponent,
     SessionDurationPipe,
     SimpleModalComponent,
-    ModalDirectiveDirective
+    ModalDirectiveDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ const jquery = window[jqueryStringKey];
       useValue: checkDirtyState
     },
     EventListResolverService,
-    AuthService
+    AuthService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })
