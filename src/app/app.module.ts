@@ -21,6 +21,7 @@ import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-
 import { SessionDurationPipe } from './events/shared/session-duration.pipe';
 import { TOASTR_TOKEN } from './common/toastr.service';
 import { JQUERY_TOKEN } from './common/jquery.service';
+import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
 
 const toastrStringKey = 'toastr';
 const toastr = window[toastrStringKey];
@@ -40,7 +41,8 @@ const jquery = window[jqueryStringKey];
     SessionCreateComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    SessionDurationPipe
+    SessionDurationPipe,
+    SimpleModalComponent
   ],
   imports: [
     BrowserModule,
