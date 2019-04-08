@@ -49,12 +49,12 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   toggleVote(session: ISession) {
     if (this.hasUserVoted(session)) {
-      this.sessionService.deleteVoter(session, this.authService.currentUser.userName)
+      this.sessionService.deleteVoter(session, this.authService.currentUser.userName);
     } else {
       this.sessionService.addVoter(session, this.authService.currentUser.userName);
     }
 
-    if(this.sortBy === 'voters') {
+    if (this.sortBy === 'voters') {
       this.filterSessions('voters');
     }
   }
