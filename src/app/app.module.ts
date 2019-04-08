@@ -20,9 +20,12 @@ import { SessionListComponent } from './events/sessions/session-list/session-lis
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 import { SessionDurationPipe } from './events/shared/session-duration.pipe';
 import { TOASTR_TOKEN } from './common/toastr.service';
+import { JQUERY_TOKEN } from './common/jquery.service';
 
 const toastrStringKey = 'toastr';
 const toastr = window[toastrStringKey];
+const jqueryStringKey = 'jquery';
+const jquery = window[jqueryStringKey];
 
 @NgModule({
   declarations: [
@@ -50,6 +53,10 @@ const toastr = window[toastrStringKey];
     {
       provide: TOASTR_TOKEN,
       useValue: toastr
+    },
+    {
+      provide: JQUERY_TOKEN,
+      useValue: jquery
     },
     EventRouteActivatorService,
     {
