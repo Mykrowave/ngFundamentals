@@ -20,9 +20,14 @@ import { SessionListComponent } from './events/sessions/session-list/session-lis
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 import { SessionDurationPipe } from './events/shared/session-duration.pipe';
 import { TOASTR_TOKEN } from './common/toastr.service';
+import { JQUERY_TOKEN } from './common/jquery.service';
+import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
+import { ModalDirectiveDirective } from './common/modal-directive.directive';
 
 const toastrStringKey = 'toastr';
 const toastr = window[toastrStringKey];
+const jqueryStringKey = '$';
+const jquery = window[jqueryStringKey];
 
 @NgModule({
   declarations: [
@@ -37,7 +42,9 @@ const toastr = window[toastrStringKey];
     SessionCreateComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    SessionDurationPipe
+    SessionDurationPipe,
+    SimpleModalComponent,
+    ModalDirectiveDirective
   ],
   imports: [
     BrowserModule,
@@ -50,6 +57,10 @@ const toastr = window[toastrStringKey];
     {
       provide: TOASTR_TOKEN,
       useValue: toastr
+    },
+    {
+      provide: JQUERY_TOKEN,
+      useValue: jquery
     },
     EventRouteActivatorService,
     {

@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-export let TOASTR_TOKEN = new InjectionToken<any>('toastr library');
+export let TOASTR_TOKEN = new InjectionToken<Toastr>('toastr library');
 
 export interface Toastr {
   success(message: string, title?: string);
