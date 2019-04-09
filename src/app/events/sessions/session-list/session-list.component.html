@@ -1,7 +1,7 @@
 <div class="col-md-12">
   <h3>Sessions</h3>
   <div class="row" *ngFor="let session of visibleSessions">
-    <div class="col-md-2">
+    <div class="col-md-1" *ngIf="authService.isAuthenticated()">
       <app-upvote
         [hasVoted]="hasUserVoted(session)"
         [numberOfVotes]="session.voters.length"

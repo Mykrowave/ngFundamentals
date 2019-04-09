@@ -17,7 +17,7 @@ export class SessionListComponent implements OnInit, OnChanges {
   @Input() sessions: ISession[];
   @Output() addSession = new EventEmitter<any>();
 
-  constructor(private sessionService: SessionService, private authService: AuthService) { }
+  constructor(private sessionService: SessionService, public authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -55,7 +55,7 @@ export class SessionListComponent implements OnInit, OnChanges {
     }
 
     if (this.sortBy === 'voters') {
-      this.filterSessions('voters');
+      this.visibleSessions.sort(sortByVotersDesc);
     }
   }
 
