@@ -3,6 +3,7 @@ import { ISession } from '../../shared/isession';
 import { EventService } from '../../shared/event.service';
 import { AuthService } from 'src/app/user/auth.service';
 import { SessionService } from '../session.service';
+import { IEvent } from '../../shared/ievent';
 
 @Component({
   selector: 'app-session-list',
@@ -12,6 +13,7 @@ import { SessionService } from '../session.service';
 export class SessionListComponent implements OnInit, OnChanges {
 
   visibleSessions: ISession[];
+  @Input() event: IEvent;
   @Input() sortBy = 'voters';
   @Input() filterBy = 'all';
   @Input() sessions: ISession[];
@@ -49,9 +51,9 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   toggleVote(session: ISession) {
     if (this.hasUserVoted(session)) {
-      this.sessionService.deleteVoter(session, this.authService.currentUser.userName);
+      this.sessionService.deleteVoter(this.event.id, session, this.authService.currentUser.userName);
     } else {
-      this.sessionService.addVoter(session, this.authService.currentUser.userName);
+      this.sessionService.addVoter(this.event.id, session, this.authService.currentUser.userName);
     }
 
     if (this.sortBy === 'voters') {
