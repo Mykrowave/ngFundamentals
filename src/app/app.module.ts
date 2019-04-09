@@ -26,6 +26,7 @@ import { ModalDirectiveDirective } from './common/modal-directive.directive';
 import { UpvoteComponent } from './events/sessions/upvote/upvote.component';
 import { SessionService } from './events/sessions/session.service';
 import { LocationValidatorDirective } from './events/shared/location-validator.directive';
+import { HttpClientModule } from '@angular/common/http';
 const toastrStringKey = 'toastr';
 const toastr = window[toastrStringKey];
 const jqueryStringKey = '$';
@@ -55,6 +56,7 @@ const jquery = window[jqueryStringKey];
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     EventService,
