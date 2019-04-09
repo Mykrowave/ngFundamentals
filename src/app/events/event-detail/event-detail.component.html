@@ -40,6 +40,7 @@
       <button class="btn btn-default" [class.active]="sortBy==='voters'" (click)="sortBy='voters'">Voters</button>
   </div>
   <app-session-list
+    [event]="event"
     [sessions]="event.sessions"
     [filterBy]="filterBy"
     [sortBy]="sortBy"
