@@ -51,5 +51,11 @@ export class ProfileComponent implements OnInit {
     return this.lastName.valid || this.lastName.untouched;
   }
 
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.toastr.warning('You logged out!');
+      this.router.navigate(['/user/login']);
+    });
+  }
 
 }

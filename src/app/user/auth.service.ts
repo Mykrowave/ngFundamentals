@@ -45,4 +45,12 @@ export class AuthService {
         }
       })).subscribe();
   }
+
+  logout() {
+    const postOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'}) };
+    return this.http.post('/api/logout', {}, postOptions)
+      .pipe(tap(() => {
+        this.currentUser = null;
+      }));
+  }
 }
