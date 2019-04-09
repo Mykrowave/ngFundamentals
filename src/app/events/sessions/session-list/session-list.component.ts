@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
 import { ISession } from '../../shared/isession';
+import { EventService } from '../../shared/event.service';
+import { AuthService } from 'src/app/user/auth.service';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-session-list',
@@ -14,7 +17,7 @@ export class SessionListComponent implements OnInit, OnChanges {
   @Input() sessions: ISession[];
   @Output() addSession = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private sessionService: SessionService, public authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -38,6 +41,22 @@ export class SessionListComponent implements OnInit, OnChanges {
 
   addSessionMode() {
     this.addSession.emit(true);
+  }
+
+  hasUserVoted(session: ISession) {
+    return this.sessionService.hasUserVoted(session, this.authService.currentUser.userName);
+  }
+
+  toggleVote(session: ISession) {
+    if (this.hasUserVoted(session)) {
+      this.sessionService.deleteVoter(session, this.authService.currentUser.userName);
+    } else {
+      this.sessionService.addVoter(session, this.authService.currentUser.userName);
+    }
+
+    if (this.sortBy === 'voters') {
+      this.visibleSessions.sort(sortByVotersDesc);
+    }
   }
 
 }
