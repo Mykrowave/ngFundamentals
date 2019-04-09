@@ -25,6 +25,7 @@ import { SimpleModalComponent } from './common/simple-modal/simple-modal.compone
 import { ModalDirectiveDirective } from './common/modal-directive.directive';
 import { UpvoteComponent } from './events/sessions/upvote/upvote.component';
 import { SessionService } from './events/sessions/session.service';
+import { LocationValidatorDirective } from './events/shared/location-validator.directive';
 const toastrStringKey = 'toastr';
 const toastr = window[toastrStringKey];
 const jqueryStringKey = '$';
@@ -46,7 +47,8 @@ const jquery = window[jqueryStringKey];
     SessionDurationPipe,
     SimpleModalComponent,
     ModalDirectiveDirective,
-    UpvoteComponent
+    UpvoteComponent,
+    LocationValidatorDirective
   ],
   imports: [
     BrowserModule,
