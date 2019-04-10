@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ISession } from '../shared/isession';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
@@ -17,13 +17,15 @@ export class SessionService {
 
   deleteVoter(eventId: number, session: ISession, userName: string) {
     session.voters = session.voters.filter(v => v !== userName);
-    this.http.delete<ISession>(`/api/events/${eventId}/sessions/${session.id}/voters/${userName}`, {})
+    this.http.delete<ISession>(`/api/events/${eventId}/sessions/${session.id}/voters/${userName}`)
       .pipe(catchError(this.handleError<ISession>('deleteVoter'))).subscribe();
   }
 
   addVoter(eventId: number, session: ISession, userName: string) {
     session.voters.push(userName);
-    this.http.post<ISession>(`/api/events/${eventId}/sessions/${session.id}/voters/${userName}`, {})
+
+    const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+    this.http.post<ISession>(`/api/events/${eventId}/sessions/${session.id}/voters/${userName}`, {}, options)
       .pipe(catchError(this.handleError<ISession>('addVoter'))).subscribe();
 
   }
